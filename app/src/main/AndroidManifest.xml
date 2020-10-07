@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.studentdiary">
+
+    <application
+        android:name="com.example.studentdiary.context.ApplicationContext"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="com.example.studentdiary.activity.SplashScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.LoginActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.MenuActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.AddFacultyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.AddStudentActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.ViewFacultyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.ViewStudentActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.TestActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.TestActivity2"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.ViewStudentByBranchYear"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.AddAttandanceSessionActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.AddAttendanceActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.ViewAttendanceByFacultyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.studentdiary.activity.ViewAttendancePerStudentActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+    </application>
+
+</manifest>
