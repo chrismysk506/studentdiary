@@ -2,6 +2,9 @@ package com.example.studentdiary.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Toast;
 
 import com.example.studentdiary.bean.AttendanceBean;
 
@@ -24,12 +28,15 @@ import com.example.studentdiary.bean.AttendanceSessionBean;
 import com.example.studentdiary.bean.FacultyBean;
 import com.example.studentdiary.bean.StudentBean;
 import com.example.studentdiary.context.ApplicationContext;
+import com.example.studentdiary.databasehelper;
 import com.example.studentdiary.db.DBAdapter;
 import com.example.studentdiary.R;
 import java.util.ArrayList;
 
 public class AddAttendanceActivity extends Activity {
-
+    String subjectname,date;
+	SQLiteOpenHelper helper;
+	SQLiteDatabase db;
 	ArrayList<StudentBean> studentBeanList;
 	private ListView listView ;
 	private ArrayAdapter<String> listAdapter;
@@ -43,8 +50,10 @@ public class AddAttendanceActivity extends Activity {
 		setContentView(R.layout.__listview_main);
 
 		sessionId = getIntent().getExtras().getInt("sessionId");
-		
-		
+		subjectname=getIntent().getStringExtra("subject");
+		date=getIntent().getStringExtra("dates");
+
+		helper=new databasehelper(this);
 		
 		listView=(ListView)findViewById(R.id.listview);
 		final ArrayList<String> studentList = new ArrayList<String>();
@@ -109,7 +118,21 @@ public class AddAttendanceActivity extends Activity {
 						attendanceBean.setAttendance_session_id(sessionId);
 						attendanceBean.setAttendance_student_id(studentBean.getStudent_id());
 						attendanceBean.setAttendance_status(status);
-						
+						String kt=studentBean.getStudent_firstname();
+						insert(Integer.toString(studentBean.getStudent_id()),subjectname,status,date,kt);
+						/*db=helper.getWritableDatabase();
+						ContentValues contentValues=new ContentValues();
+						//contentValues.put(databasehelper.COL_1,studentBean.getStudent_id());
+
+						contentValues.put(databasehelper.COL_2,subjectname);
+						contentValues.put(databasehelper.COL_3,status);
+						contentValues.put(databasehelper.COL_4,date);
+						contentValues.put(databasehelper.COL_5,studentBean.getStudent_firstname());
+
+						long res= db.insert(databasehelper.TABLE_NAME,null,contentValues);
+						Toast.makeText(getApplicationContext(),"savedddddddddddddddd",Toast.LENGTH_LONG).show();*/
+
+						Toast.makeText(getApplicationContext(),Integer.toString(studentBean.getStudent_id())+subjectname+status+date+studentBean.getStudent_firstname(),Toast.LENGTH_LONG).show();
 						DBAdapter dbAdapter = new DBAdapter(AddAttendanceActivity.this);
 						dbAdapter.addNewAttendance(attendanceBean);
 						
@@ -127,8 +150,19 @@ public class AddAttendanceActivity extends Activity {
 
 	}
 
+	public void insert(String student_id,String subjectname,String status,String date,String s) {
+		db=helper.getWritableDatabase();
+		ContentValues contentValues=new ContentValues();
+		contentValues.put(databasehelper.COL_1,student_id);
+		contentValues.put(databasehelper.COL_2,subjectname);
+		contentValues.put(databasehelper.COL_3,status);
+		contentValues.put(databasehelper.COL_4,date);
+		contentValues.put(databasehelper.COL_5,s);
 
+		long res= db.insert(databasehelper.TABLE_NAME,null,contentValues);
+		Toast.makeText(getApplicationContext(),"savedddddddddddddddd",Toast.LENGTH_LONG).show();
 
+	}
 
 
 }

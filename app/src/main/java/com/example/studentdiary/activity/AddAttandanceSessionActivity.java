@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,9 @@ public class AddAttandanceSessionActivity<AddAttandanceActivity> extends Activit
 	String year = "1st";
 	String subject = "DS";
 
+	SQLiteOpenHelper helper;
+	SQLiteDatabase db;
+    String subjectname,status,datess,id;
 	private String[] branchString = new String[] { "BCA" , "Btech","Mtech"};
 	private String[] yearString = new String[] {"1st","2nd","3rd","4th"};
 	private String[] subjectSEString = new String[] {"SC","MC","AI"};
@@ -177,8 +182,13 @@ public class AddAttandanceSessionActivity<AddAttandanceActivity> extends Activit
 				((ApplicationContext)AddAttandanceSessionActivity.this.getApplicationContext()).setStudentBeanList(studentBeanList);
 
 
+
 				Intent intent = new Intent(AddAttandanceSessionActivity.this,AddAttendanceActivity.class);
 				intent.putExtra("sessionId", sessionId);
+				datess=dateEditText.getText().toString();
+				intent.putExtra("dates",datess);
+				intent.putExtra("subject",subject);
+
 				startActivity(intent);
 			}
 		});

@@ -1,7 +1,10 @@
 package com.example.studentdiary.activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +23,8 @@ import com.example.studentdiary.bean.AttendanceSessionBean;
 import com.example.studentdiary.bean.FacultyBean;
 import com.example.studentdiary.bean.StudentBean;
 import com.example.studentdiary.context.ApplicationContext;
+import com.example.studentdiary.databasehelper;
+import com.example.studentdiary.databasehelper2;
 import com.example.studentdiary.db.DBAdapter;
 import com.example.studentdiary.R;
 
@@ -27,12 +32,15 @@ public class AddStudentActivity extends Activity {
 
 	Button registerButton;
 	EditText textFirstName;
-	EditText textLastName;
+	EditText textLastName,usernames,passwords;
+	SQLiteOpenHelper helper;
+	SQLiteDatabase db;
 
 	EditText textcontact;
 	EditText textaddress;
 	Spinner spinnerbranch,spinneryear;
 	String userrole,branch,year;
+	String usernamess,passwordssss;
 	private String[] branchString = new String[] { "BCA","Btech","Mtech"};
 	private String[] yearString = new String[] {"1st","2nd","3rd"};
 
@@ -48,7 +56,9 @@ public class AddStudentActivity extends Activity {
 		textcontact=(EditText)findViewById(R.id.editTextPhone);
 		textaddress=(EditText)findViewById(R.id.editTextaddr);
 		registerButton=(Button)findViewById(R.id.RegisterButton);
-
+        usernames=(EditText)findViewById(R.id.userName);
+        passwords=(EditText)findViewById(R.id.userpass);
+        helper=new databasehelper2(this);
 		spinnerbranch.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View view,
@@ -107,6 +117,8 @@ public class AddStudentActivity extends Activity {
 				String last_name = textLastName.getText().toString();
 				String phone_no = textcontact.getText().toString();
 				String address = textaddress.getText().toString();
+				usernamess=usernames.getText().toString();
+				passwordssss=passwords.getText().toString();
 
 				if (TextUtils.isEmpty(first_name)) {
 					textFirstName.setError("please enter firstname");
@@ -135,6 +147,8 @@ public class AddStudentActivity extends Activity {
 					
 					DBAdapter dbAdapter= new DBAdapter(AddStudentActivity.this);
 					dbAdapter.addStudent(studentBean);
+					insert(usernamess,passwordssss);
+
 					
 					Intent intent =new Intent(AddStudentActivity.this,MenuActivity.class);
 					startActivity(intent);
@@ -145,6 +159,20 @@ public class AddStudentActivity extends Activity {
 		});
 	}
 
+	private void insert(String usernamess,String passwordssss) {
+
+			db=helper.getWritableDatabase();
+			ContentValues contentValues=new ContentValues();
+
+			contentValues.put(databasehelper2.COL_2,usernamess);
+			contentValues.put(databasehelper2.COL_3,passwordssss);
+
+
+			long res= db.insert(databasehelper2.TABLE_NAME,null,contentValues);
+			Toast.makeText(getApplicationContext(),"savedddddddddddddddd",Toast.LENGTH_LONG).show();
+
+
+	}
 
 
 }

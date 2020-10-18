@@ -2,6 +2,9 @@ package com.example.studentdiary.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,17 +18,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.studentdiary.MainActivity;
 import com.example.studentdiary.bean.AttendanceBean;
 import com.example.studentdiary.bean.AttendanceSessionBean;
 import com.example.studentdiary.bean.FacultyBean;
 import com.example.studentdiary.bean.StudentBean;
 import com.example.studentdiary.context.ApplicationContext;
+import com.example.studentdiary.databasehelper;
+import com.example.studentdiary.databasehelper2;
 import com.example.studentdiary.db.DBAdapter;
 import com.example.studentdiary.R;
 
 
 public class LoginActivity extends Activity {
-
+	SQLiteOpenHelper helper;
+	SQLiteDatabase db;
 	Button login;
 	EditText username,password;
 	Spinner spinnerloginas;
@@ -41,7 +49,7 @@ public class LoginActivity extends Activity {
 		username=(EditText)findViewById(R.id.username);
 		password=(EditText)findViewById(R.id.password);
 		spinnerloginas=(Spinner)findViewById(R.id.spinnerloginas);
-
+        helper=new databasehelper2(this);
 		spinnerloginas.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View view,
@@ -137,13 +145,20 @@ public class LoginActivity extends Activity {
 						password.setError("enter password");
 					}
 					else
-					{
-						if(user_name.equals("student") & pass_word.equals("student123")){
 
-                                  
-							Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-						}else{
-							Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
+					{
+						db=helper.getReadableDatabase();
+						Cursor cursor=db.rawQuery("SELECT * FROM "+databasehelper2.TABLE_NAME+" WHERE "+databasehelper2.COL_2+"=?"+" AND "+databasehelper2.COL_3+"=?",new String[]{username.getText().toString(),password.getText().toString()});
+						if(cursor.getCount()>0)
+						{
+							cursor.moveToFirst();
+							Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+							intent.putExtra("id",cursor.getString(0));
+							Toast.makeText(getApplicationContext(),cursor.getString(0)+"kkkkkkkkkkkkkkkkkkkkkk",Toast.LENGTH_LONG).show();
+							startActivity(intent);
+						}
+						else{
+							Toast.makeText(getApplicationContext(),"user does not exist",Toast.LENGTH_LONG).show();
 						}
 					}
 
