@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.studentdiary">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application xmlns:tools="http://schemas.android.com/tools"
         android:name=".context.ApplicationContext"
@@ -10,7 +12,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".videofullscreen"></activity>
+        <activity
+            android:name=".MainActivity3"
+            android:theme="@style/AppFullScreenTheme" />
+        <activity android:name=".Gridlayout" />
+        <activity android:name=".MainActivity2"
+            android:theme="@style/AppFullScreenTheme2"/>
         <activity
             android:name=".activity.SplashScreen"
             android:label="@string/app_name">
@@ -22,46 +30,46 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.MenuActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.AddFacultyActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.AddStudentActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ViewFacultyActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ViewStudentActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.TestActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.TestActivity2"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ViewStudentByBranchYear"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.AddAttandanceSessionActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.AddAttendanceActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ViewAttendanceByFacultyActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ViewAttendancePerStudentActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
-            android:label="Student diary"></activity>
+            android:label="Student diary" />
     </application>
 
 </manifest>

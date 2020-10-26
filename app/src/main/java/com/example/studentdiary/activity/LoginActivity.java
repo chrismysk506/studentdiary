@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studentdiary.MainActivity;
+import com.example.studentdiary.MainActivity3;
 import com.example.studentdiary.bean.AttendanceBean;
 import com.example.studentdiary.bean.AttendanceSessionBean;
 import com.example.studentdiary.bean.FacultyBean;
@@ -95,7 +96,7 @@ public class LoginActivity extends Activity {
 					else
 					{
 						if(user_name.equals("admin") & pass_word.equals("admin123")){
-						Intent intent =new Intent(LoginActivity.this,MenuActivity.class);
+						Intent intent =new Intent(LoginActivity.this, MenuActivity.class);
 						startActivity(intent);
 						Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
 						}else{
@@ -152,8 +153,9 @@ public class LoginActivity extends Activity {
 						if(cursor.getCount()>0)
 						{
 							cursor.moveToFirst();
-							Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+							Intent intent=new Intent(getApplicationContext(),MainActivity3.class);
 							intent.putExtra("id",cursor.getString(0));
+							intent.putExtra("name",username.getText().toString());
 							Toast.makeText(getApplicationContext(),cursor.getString(0)+"kkkkkkkkkkkkkkkkkkkkkk",Toast.LENGTH_LONG).show();
 							startActivity(intent);
 						}

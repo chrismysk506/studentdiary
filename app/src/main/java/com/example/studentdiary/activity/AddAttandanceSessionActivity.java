@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.studentdiary.MainActivity2;
 import com.example.studentdiary.bean.AttendanceBean;
 import com.example.studentdiary.bean.AttendanceSessionBean;
 import com.example.studentdiary.bean.FacultyBean;
@@ -43,6 +44,7 @@ public class AddAttandanceSessionActivity<AddAttandanceActivity> extends Activit
 	Button submit;
 	Button viewAttendance;
 	Button viewTotalAttendance;
+	Button upldbtn;
 	Spinner spinnerbranch,spinneryear,spinnerSubject;
 	String branch = "Btech";
 	String year = "1st";
@@ -156,6 +158,15 @@ public class AddAttandanceSessionActivity<AddAttandanceActivity> extends Activit
 			public void onClick(View arg0) {
 				showDialog(0);
 
+			}
+		});
+		upldbtn=findViewById(R.id.uploadbtn);
+		upldbtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+                                    Toast.makeText(getApplicationContext(),"clicked",Toast.LENGTH_LONG).show();
+                                   Intent i=new Intent(getApplicationContext(),MainActivity2.class);
+                                    startActivity(i);
 			}
 		});
 

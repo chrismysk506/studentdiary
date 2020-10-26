@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_header"
+    android:layout_width="match_parent"
+    android:layout_height="178dp"
+    android:background="#1B83D8"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_person_outline_black_24dp"
+
+
+        app:tint="#ffffff" />
+
+    <TextView
+        android:id="@+id/headername"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="28sp"
+        android:textStyle="italic"
+
+
+        />
+
+    <TextView
+        android:id="@+id/headermail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="italic"
+
+
+        />
+</LinearLayout>
