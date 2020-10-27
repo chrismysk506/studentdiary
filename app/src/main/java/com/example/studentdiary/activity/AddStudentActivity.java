@@ -25,6 +25,7 @@ import com.example.studentdiary.bean.StudentBean;
 import com.example.studentdiary.context.ApplicationContext;
 import com.example.studentdiary.databasehelper;
 import com.example.studentdiary.databasehelper2;
+import com.example.studentdiary.databasehelper3;
 import com.example.studentdiary.db.DBAdapter;
 import com.example.studentdiary.R;
 
@@ -33,8 +34,8 @@ public class AddStudentActivity extends Activity {
 	Button registerButton;
 	EditText textFirstName;
 	EditText textLastName,usernames,passwords;
-	SQLiteOpenHelper helper;
-	SQLiteDatabase db;
+	SQLiteOpenHelper helper,helpe3;
+	SQLiteDatabase db,db3;
 
 	EditText textcontact;
 	EditText textaddress;
@@ -59,6 +60,7 @@ public class AddStudentActivity extends Activity {
         usernames=(EditText)findViewById(R.id.userName);
         passwords=(EditText)findViewById(R.id.userpass);
         helper=new databasehelper2(this);
+        helpe3=new databasehelper3(this);
 		spinnerbranch.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View view,
@@ -149,7 +151,7 @@ public class AddStudentActivity extends Activity {
 					dbAdapter.addStudent(studentBean);
 					insert(usernamess,passwordssss);
 
-					
+					insertfoget(studentBean.getStudent_firstname(),studentBean.getStudent_lastname(),studentBean.getStudent_address(),studentBean.getStudent_mobilenumber(),usernamess,passwordssss);
 					Intent intent =new Intent(AddStudentActivity.this,MenuActivity.class);
 					startActivity(intent);
 					Toast.makeText(getApplicationContext(), "student added successfully", Toast.LENGTH_SHORT).show();
@@ -157,6 +159,20 @@ public class AddStudentActivity extends Activity {
 				}
 			}
 		});
+	}
+
+	private void insertfoget(String student_firstname, String student_lastname, String student_address, String student_mobilenumber, String usernamess, String passwordssss) {
+	          db3=helpe3.getWritableDatabase();
+	          ContentValues contentValues=new ContentValues();
+	          contentValues.put(databasehelper3.COL_2,student_firstname);
+	          contentValues.put(databasehelper3.COL_3,student_lastname);
+	          contentValues.put(databasehelper3.COL_4,student_address);
+	          contentValues.put(databasehelper3.COL_5,student_mobilenumber);
+	          contentValues.put(databasehelper3.COL_6,usernamess);
+	          contentValues.put(databasehelper3.COL_7,passwordssss);
+
+	          long res2=db3.insert(databasehelper3.TABLE_NAME,null,contentValues);
+
 	}
 
 	private void insert(String usernamess,String passwordssss) {

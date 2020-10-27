@@ -36,12 +36,12 @@ public class YoutubeAdapter extends RecyclerView.Adapter<YoutubeViewHolder> {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            /*Intent intent = new Intent(context, videofullscreen.class);
-               intent.putExtra("link", current.getLink());*/
+            Intent intent = new Intent(context, videofullscreen.class);
+               intent.putExtra("link", current.getLink());
              /*   Intent i=new Intent(context,MainActivity3.class);
                 i.putExtra("link",current.getLink());*/
                 Toast.makeText(context,current.getLink(),Toast.LENGTH_LONG).show();
-              //  context.startActivity(i);
+                context.startActivity(intent);
 
                /* getSupportFragmentManager().beginTransaction().replace(R.id.navcontainer,new HomeFragment()).commit();
                 drawerLayout.closeDrawers();*/

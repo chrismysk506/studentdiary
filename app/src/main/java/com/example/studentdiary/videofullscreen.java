@@ -19,13 +19,16 @@ public class videofullscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videofullscreen);
-    /*    webView2=findViewById(R.id.full_video);
+        getSupportActionBar().hide();
+        webView2=findViewById(R.id.full_video);
         Intent i=getIntent();
         String url=i.getStringExtra("link");
         Toast.makeText(getApplicationContext(),url,Toast.LENGTH_LONG).show();
         webView2.loadUrl(url);
         webView2.setWebViewClient(new WebViewClient());
         webView2.setWebChromeClient(new WebChromeClient());
-        webView2.getSettings().setJavaScriptEnabled(true);*/
+         webView2.getSettings().setJavaScriptEnabled(true);
     }
+
+
 }

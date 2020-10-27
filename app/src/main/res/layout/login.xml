@@ -100,21 +100,30 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/SignUp"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
+        android:layout_width="260dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
         android:layout_marginTop="0dp"
+
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/loginLayout">
+        <TextView
+            android:id="@+id/forgettextview"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:textSize="15sp"
+            android:text="Forgot password"
+            android:paddingTop="7dp"
+            android:paddingLeft="140dp"
+            />
         <Button
             android:id="@+id/buttonlogin"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:onClick="login"
             android:text="Login"
             android:textColor="@android:color/white"
-            android:background="@drawable/loginbutt"
-            android:layout_weight="1"/>
+            android:background="@drawable/loginbutt" />
     </LinearLayout>
 
 </RelativeLayout>

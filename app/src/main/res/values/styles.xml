@@ -39,4 +39,10 @@
         <item name="android:windowActionBar">true</item>
 
     </style>
+    <style name="AppFullScreenTheme3" parent="Theme.AppCompat.Light.DarkActionBar">
+
+
+        <item name="android:windowActionBar">true</item>
+
+    </style>
 </resources>

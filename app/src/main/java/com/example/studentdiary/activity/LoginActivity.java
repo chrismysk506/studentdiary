@@ -30,12 +30,14 @@ import com.example.studentdiary.databasehelper;
 import com.example.studentdiary.databasehelper2;
 import com.example.studentdiary.db.DBAdapter;
 import com.example.studentdiary.R;
+import com.example.studentdiary.forgetpassword;
 
 
 public class LoginActivity extends Activity {
 	SQLiteOpenHelper helper;
 	SQLiteDatabase db;
 	Button login;
+	TextView forgetpasstextview;
 	EditText username,password;
 	Spinner spinnerloginas;
 	String userrole;
@@ -45,12 +47,18 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
+           forgetpasstextview=findViewById(R.id.forgettextview);
 		login =(Button)findViewById(R.id.buttonlogin);
 		username=(EditText)findViewById(R.id.username);
 		password=(EditText)findViewById(R.id.password);
 		spinnerloginas=(Spinner)findViewById(R.id.spinnerloginas);
         helper=new databasehelper2(this);
+        forgetpasstextview.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(getApplicationContext(), forgetpassword.class));
+			}
+		});
 		spinnerloginas.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View view,
